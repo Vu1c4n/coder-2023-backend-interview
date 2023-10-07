@@ -1,0 +1,13 @@
+from pydantic import BaseModel, validator
+
+class Identity(BaseModel):
+    name:str
+    age:int
+    sex:str
+
+    @validator('sex')
+    def checkSex(cls,v):
+        if v not in ('male', 'female'):
+            raise ValueError('unexisting sex')
+        return v
+    
